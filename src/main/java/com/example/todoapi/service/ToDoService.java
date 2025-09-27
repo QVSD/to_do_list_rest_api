@@ -1,6 +1,7 @@
 package com.example.todoapi.service;
 import com.example.todoapi.model.ToDo;
 import com.example.todoapi.repository.ToDoRepository;
+import com.example.todoapi.exception.ToDoNotFoundException;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,7 @@ public class ToDoService {
 
     public ToDo getToDoById(Long id){
         return toDoRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("ToDo not found with id " + id));
+                .orElseThrow(() -> new ToDoNotFoundException("ToDo not found with id " + id));
     }
 
     public ToDo createToDo(ToDo toDo){
